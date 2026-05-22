@@ -4,24 +4,28 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Puppy Tools | Free Dog & Puppy Calculators",
   description:
-    "Free dog and puppy calculators for feeding, calories, water intake, age conversion, pregnancy due dates, growth charts, weight prediction, and pet care tools.",
+    "Free dog and puppy calculators for feeding, calories, water intake, age conversion, pregnancy due dates, growth charts, breed feeding, puppy sleep schedules, and pet care tools.",
+
+  verification: {
+    google: "7MXHF3kjMOc0ly9F4urPkTM1-Nyn4nSyRSTLCMvI3qA",
+  },
+
   keywords: [
     "puppy feeding calculator",
     "dog feeding calculator",
     "dog food calculator",
     "dog calorie calculator",
-    "dog bmi calculator",
-    "ideal dog weight calculator",
-    "puppy weight predictor",
-    "puppy size calculator",
-    "puppy feeding schedule",
-    "puppy age chart",
+    "puppy calorie calculator",
+    "dog feeding chart",
+    "puppy sleep schedule",
     "dog age calculator",
     "dog water calculator",
     "dog pregnancy calculator",
-    "dog heat cycle calculator",
-    "dog due date calculator",
     "puppy growth chart",
+    "golden retriever feeding calculator",
+    "labrador feeding calculator",
+    "husky feeding calculator",
+    "chihuahua feeding calculator",
     "puppy tools",
     "dog tools",
   ],
@@ -42,53 +46,36 @@ export default function RootLayout({
             </a>
 
             <nav className="flex flex-wrap gap-4 text-sm font-medium text-slate-600">
-              <a
-                href="/puppy-feeding-calculator"
-                className="hover:text-blue-600"
-              >
+              <a href="/puppy-feeding-calculator" className="hover:text-blue-600">
                 Puppy Feeding
               </a>
 
-              <a
-                href="/dog-food-calculator"
-                className="hover:text-blue-600"
-              >
+              <a href="/dog-food-calculator" className="hover:text-blue-600">
                 Dog Food
               </a>
 
-              <a
-                href="/dog-calorie-calculator"
-                className="hover:text-blue-600"
-              >
-                Dog Calories
+              <a href="/golden-retriever-feeding-calculator" className="hover:text-blue-600">
+                Golden Feeding
               </a>
 
-              <a
-                href="/dog-bmi-calculator"
-                className="hover:text-blue-600"
-              >
+              <a href="/labrador-feeding-calculator" className="hover:text-blue-600">
+                Labrador Feeding
+              </a>
+
+              <a href="/puppy-calorie-calculator-by-age" className="hover:text-blue-600">
+                Puppy Calories
+              </a>
+
+              <a href="/dog-bmi-calculator" className="hover:text-blue-600">
                 Dog BMI
               </a>
 
-              <a
-                href="/puppy-weight-predictor"
-                className="hover:text-blue-600"
-              >
+              <a href="/puppy-weight-predictor" className="hover:text-blue-600">
                 Puppy Weight
               </a>
 
-              <a
-                href="/dog-pregnancy-calculator"
-                className="hover:text-blue-600"
-              >
+              <a href="/dog-pregnancy-calculator" className="hover:text-blue-600">
                 Dog Pregnancy
-              </a>
-
-              <a
-                href="/dog-heat-cycle-calculator"
-                className="hover:text-blue-600"
-              >
-                Heat Cycle
               </a>
             </nav>
           </div>
@@ -98,7 +85,7 @@ export default function RootLayout({
 
         <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-6 py-10">
-            <div className="grid gap-10 md:grid-cols-4">
+            <div className="grid gap-10 md:grid-cols-5">
               <div>
                 <h3 className="text-lg font-bold text-slate-900">
                   Puppy Tools
@@ -107,7 +94,7 @@ export default function RootLayout({
                 <p className="mt-2 max-w-md text-sm leading-7 text-slate-600">
                   Free puppy and dog calculators for feeding, calories, water
                   intake, age conversion, pregnancy timing, growth charts,
-                  weight prediction, and daily pet care needs.
+                  breed feeding, puppy routines, and daily pet care needs.
                 </p>
               </div>
 
@@ -117,105 +104,75 @@ export default function RootLayout({
                 </h4>
 
                 <div className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
-                  <a href="/puppy-feeding-calculator">
-                    Puppy Feeding Calculator
-                  </a>
-
-                  <a href="/puppy-calorie-calculator">
-                    Puppy Calorie Calculator
-                  </a>
-
-                  <a href="/puppy-water-calculator">
-                    Puppy Water Calculator
-                  </a>
-
-                  <a href="/puppy-age-calculator">
-                    Puppy Age Calculator
-                  </a>
-
-                  <a href="/puppy-age-chart">
-                    Puppy Age Chart
-                  </a>
-
-                  <a href="/puppy-growth-chart">
-                    Puppy Growth Chart
-                  </a>
-
-                  <a href="/puppy-size-calculator">
-                    Puppy Size Calculator
-                  </a>
-
-                  <a href="/puppy-weight-predictor">
-                    Puppy Weight Predictor
-                  </a>
-
-                  <a href="/puppy-feeding-chart">
-                    Puppy Feeding Chart
-                  </a>
-
-                  <a href="/puppy-feeding-schedule">
-                    Puppy Feeding Schedule
-                  </a>
+                  <a href="/puppy-feeding-calculator">Puppy Feeding Calculator</a>
+                  <a href="/8-week-puppy-feeding-calculator">8 Week Puppy Feeding Calculator</a>
+                  <a href="/10-week-puppy-feeding-calculator">10 Week Puppy Feeding Calculator</a>
+                  <a href="/3-month-puppy-feeding-calculator">3 Month Puppy Feeding Calculator</a>
+                  <a href="/puppy-calorie-calculator">Puppy Calorie Calculator</a>
+                  <a href="/puppy-calorie-calculator-by-age">Puppy Calorie Calculator By Age</a>
+                  <a href="/puppy-water-calculator">Puppy Water Calculator</a>
+                  <a href="/puppy-age-calculator">Puppy Age Calculator</a>
+                  <a href="/puppy-age-chart">Puppy Age Chart</a>
+                  <a href="/puppy-sleep-schedule-by-age">Puppy Sleep Schedule By Age</a>
+                  <a href="/puppy-feeding-schedule">Puppy Feeding Schedule</a>
+                  <a href="/puppy-feeding-chart">Puppy Feeding Chart</a>
                 </div>
               </div>
 
               <div>
                 <h4 className="text-sm font-semibold text-slate-900">
-                  Dog Health Tools
+                  Puppy Growth Tools
                 </h4>
 
                 <div className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
-                  <a href="/dog-feeding-calculator">
-                    Dog Feeding Calculator
-                  </a>
-
-                  <a href="/dog-food-calculator">
-                    Dog Food Calculator
-                  </a>
-
-                  <a href="/dog-calorie-calculator">
-                    Dog Calorie Calculator
-                  </a>
-
-                  <a href="/dog-weight-calculator">
-                    Dog Weight Calculator
-                  </a>
-
-                  <a href="/dog-bmi-calculator">
-                    Dog BMI Calculator
-                  </a>
-
-                  <a href="/ideal-dog-weight-calculator">
-                    Ideal Dog Weight Calculator
-                  </a>
-
-                  <a href="/dog-age-calculator">
-                    Dog Age Calculator
-                  </a>
-
-                  <a href="/dog-water-calculator">
-                    Dog Water Calculator
-                  </a>
+                  <a href="/puppy-growth-chart">Puppy Growth Chart</a>
+                  <a href="/labrador-puppy-growth-chart">Labrador Puppy Growth Chart</a>
+                  <a href="/puppy-size-calculator">Puppy Size Calculator</a>
+                  <a href="/puppy-weight-predictor">Puppy Weight Predictor</a>
+                  <a href="/2-month-puppy-weight-calculator">2 Month Puppy Weight Calculator</a>
+                  <a href="/golden-retriever-puppy-calorie-calculator">Golden Retriever Puppy Calorie Calculator</a>
+                  <a href="/chihuahua-puppy-calorie-calculator">Chihuahua Puppy Calorie Calculator</a>
                 </div>
               </div>
 
               <div>
                 <h4 className="text-sm font-semibold text-slate-900">
-                  Dog Pregnancy Tools
+                  Breed Feeding Tools
                 </h4>
 
                 <div className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
-                  <a href="/dog-pregnancy-calculator">
-                    Dog Pregnancy Calculator
-                  </a>
+                  <a href="/golden-retriever-feeding-calculator">Golden Retriever Feeding Calculator</a>
+                  <a href="/labrador-feeding-calculator">Labrador Feeding Calculator</a>
+                  <a href="/german-shepherd-feeding-calculator">German Shepherd Feeding Calculator</a>
+                  <a href="/husky-feeding-calculator">Husky Feeding Calculator</a>
+                  <a href="/pitbull-feeding-calculator">Pitbull Feeding Calculator</a>
+                  <a href="/french-bulldog-feeding-calculator">French Bulldog Feeding Calculator</a>
+                  <a href="/chihuahua-feeding-calculator">Chihuahua Feeding Calculator</a>
+                  <a href="/poodle-feeding-calculator">Poodle Feeding Calculator</a>
+                  <a href="/rottweiler-feeding-calculator">Rottweiler Feeding Calculator</a>
+                  <a href="/border-collie-feeding-calculator">Border Collie Feeding Calculator</a>
+                </div>
+              </div>
 
-                  <a href="/dog-due-date-calculator">
-                    Dog Due Date Calculator
-                  </a>
+              <div>
+                <h4 className="text-sm font-semibold text-slate-900">
+                  Dog Tools
+                </h4>
 
-                  <a href="/dog-heat-cycle-calculator">
-                    Dog Heat Cycle Calculator
-                  </a>
+                <div className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
+                  <a href="/dog-feeding-calculator">Dog Feeding Calculator</a>
+                  <a href="/dog-food-calculator">Dog Food Calculator</a>
+                  <a href="/dog-feeding-chart-by-age">Dog Feeding Chart By Age</a>
+                  <a href="/dog-calorie-calculator">Dog Calorie Calculator</a>
+                  <a href="/dog-calorie-chart-by-breed">Dog Calorie Chart By Breed</a>
+                  <a href="/dog-weight-calculator">Dog Weight Calculator</a>
+                  <a href="/dog-bmi-calculator">Dog BMI Calculator</a>
+                  <a href="/ideal-dog-weight-calculator">Ideal Dog Weight Calculator</a>
+                  <a href="/dog-age-calculator">Dog Age Calculator</a>
+                  <a href="/dog-water-calculator">Dog Water Calculator</a>
+                  <a href="/dog-pregnancy-calculator">Dog Pregnancy Calculator</a>
+                  <a href="/dog-due-date-calculator">Dog Due Date Calculator</a>
+                  <a href="/dog-heat-cycle-calculator">Dog Heat Cycle Calculator</a>
                 </div>
               </div>
             </div>
