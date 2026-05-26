@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How often should puppies eat?",
+        name: "How many meals should a puppy eat per day?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Young puppies often eat three to four meals per day. Older puppies may gradually transition to two meals per day.",
+          text: "Young puppies often eat three to four meals per day, while older puppies may gradually transition to two meals daily.",
         },
       },
       {
         "@type": "Question",
-        name: "When can puppies eat twice a day?",
+        name: "Is a feeding schedule important for puppies?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Many puppies can transition to two meals per day around 6 to 12 months, depending on breed size, growth, and veterinarian guidance.",
+          text: "Yes. Consistent feeding schedules may support digestion, appetite, potty routines, and stable daily habits.",
         },
       },
       {
         "@type": "Question",
-        name: "Should puppies eat at the same time every day?",
+        name: "Should feeding times stay consistent?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A consistent feeding routine can help with digestion, potty training, and daily structure.",
+          text: "Feeding at similar times daily can help puppies build regular routines and may improve digestion.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do large breed puppies need different schedules?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Large breed puppies may have different growth speed and calorie needs compared to smaller breeds.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When should puppies switch to adult feeding routines?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Many puppies begin transitioning toward adult feeding around 12 months, though large breeds may take longer.",
         },
       },
     ],

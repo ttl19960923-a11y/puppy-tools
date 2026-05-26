@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Can I predict my puppy's adult weight?",
+        name: "How accurate is a puppy weight predictor?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "You can estimate adult weight using current age and weight, but the result is only a rough prediction.",
+          text: "It is only a rough estimate. Breed, genetics, diet, growth stage, and health can all influence final adult weight.",
         },
       },
       {
         "@type": "Question",
-        name: "What affects puppy adult weight?",
+        name: "When do puppies reach adult weight?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Breed size, genetics, nutrition, health, and growth rate can all affect a puppy's adult weight.",
+          text: "Small breeds may reach adult weight around 8 to 12 months, while large breeds may continue growing for 18 months or more.",
         },
       },
       {
         "@type": "Question",
-        name: "Is a puppy weight predictor exact?",
+        name: "Do large breed puppies grow longer?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. A puppy weight predictor gives only a general estimate and should not be treated as an exact result.",
+          text: "Yes. Large breed dogs often continue growing longer than small or medium breed dogs.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can nutrition affect puppy adult weight?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Nutrition quality, calorie intake, and feeding balance can all influence healthy growth.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should I track puppy weight regularly?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Regular weight tracking can help monitor growth progress and identify unusual changes early.",
         },
       },
     ],

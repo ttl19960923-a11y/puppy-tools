@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much food should I feed my dog?",
+        name: "How much dog food should I feed per day?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The amount depends on weight, activity level, age, food type, metabolism, and the food label recommendations. This calculator gives a general estimate.",
+          text: "Feeding amount depends on weight, calorie needs, activity level, metabolism, and the calorie density of the food.",
         },
       },
       {
         "@type": "Question",
-        name: "Does wet dog food require a different amount than dry food?",
+        name: "Is wet food amount different from dry food?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Wet dog food contains more moisture, so the feeding amount by weight is often higher than dry food.",
+          text: "Yes. Wet food contains more moisture and usually requires larger serving sizes than dry food.",
         },
       },
       {
         "@type": "Question",
-        name: "Should I follow this calculator exactly?",
+        name: "Should active dogs eat more food?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. This calculator is only a general guide. Always check your dog food label and consult a veterinarian for personalized advice.",
+          text: "Yes. Active dogs generally burn more calories and may require larger food portions.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can overfeeding cause weight gain?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Excess calories over time can contribute to obesity and related health issues.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should I follow the dog food package guide?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Food package guides are useful starting points, but portions may still need adjustment for your individual dog.",
         },
       },
     ],

@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Can dogs use BMI like humans?",
+        name: "Is dog BMI accurate?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Dog BMI can provide a rough estimate, but it is not as reliable as veterinary body condition scoring because breeds have very different body shapes.",
+          text: "Dog BMI is only a rough estimate. Body condition scoring is usually more useful because different breeds have different body shapes.",
         },
       },
       {
         "@type": "Question",
-        name: "How do I know if my dog is overweight?",
+        name: "What should I do if my dog may be overweight?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Signs may include difficulty feeling the ribs, reduced waist definition, low energy, and excessive body fat.",
+          text: "Monitor food portions, activity, treats, and body condition. For a safe weight plan, ask a veterinarian.",
         },
       },
       {
         "@type": "Question",
-        name: "Should I ask a vet about my dog's weight?",
+        name: "Is BMI the same as body condition score?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. A veterinarian can evaluate your dog's body condition, breed, age, health, and activity level more accurately.",
+          text: "No. Body condition score considers rib feel, waist shape, fat coverage, and muscle condition.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can muscular dogs have a higher BMI?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. More muscular dogs may weigh more without necessarily being overweight.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should I use dog BMI for puppies?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Puppy growth changes quickly, so puppy weight and body condition should be evaluated differently from adult dogs.",
         },
       },
     ],

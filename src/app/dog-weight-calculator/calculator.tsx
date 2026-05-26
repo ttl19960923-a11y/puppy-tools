@@ -5,7 +5,14 @@ import { useState } from "react";
 export default function DogWeightCalculator() {
   const [weight, setWeight] = useState("");
   const [breedSize, setBreedSize] = useState("medium");
-  const [result, setResult] = useState("");
+  const [bodyShape, setBodyShape] = useState("ideal");
+
+  const [result, setResult] = useState<{
+    status: string;
+    idealRange: string;
+    guidance: string;
+    note: string;
+  } | null>(null);
 
   function calculateWeightStatus() {
     const dogWeight = Number(weight);
@@ -15,39 +22,57 @@ export default function DogWeightCalculator() {
       return;
     }
 
-    let message = "";
+    let min = 10;
+    let max = 25;
 
     if (breedSize === "small") {
-      if (dogWeight < 5) {
-        message = "Your dog may be underweight.";
-      } else if (dogWeight <= 10) {
-        message = "Your dog appears to have a healthy weight.";
-      } else {
-        message = "Your dog may be overweight.";
-      }
+      min = 5;
+      max = 10;
     }
 
     if (breedSize === "medium") {
-      if (dogWeight < 10) {
-        message = "Your dog may be underweight.";
-      } else if (dogWeight <= 25) {
-        message = "Your dog appears to have a healthy weight.";
-      } else {
-        message = "Your dog may be overweight.";
-      }
+      min = 10;
+      max = 25;
     }
 
     if (breedSize === "large") {
-      if (dogWeight < 25) {
-        message = "Your dog may be underweight.";
-      } else if (dogWeight <= 45) {
-        message = "Your dog appears to have a healthy weight.";
-      } else {
-        message = "Your dog may be overweight.";
-      }
+      min = 25;
+      max = 45;
     }
 
-    setResult(message);
+    let status = "Healthy weight range";
+    let guidance =
+      "Your dog appears to be within a general healthy weight range for this breed size.";
+
+    if (dogWeight < min) {
+      status = "May be underweight";
+      guidance =
+        "Your dog may be below the general weight range for this breed size. Consider checking body condition and diet quality.";
+    }
+
+    if (dogWeight > max) {
+      status = "May be overweight";
+      guidance =
+        "Your dog may be above the general weight range for this breed size. Portion control, activity, and calorie intake may need review.";
+    }
+
+    if (bodyShape === "thin") {
+      guidance =
+        "If your dog looks thin or ribs are very visible, ask a veterinarian about healthy weight gain.";
+    }
+
+    if (bodyShape === "heavy") {
+      guidance =
+        "If your dog has reduced waist definition or ribs are hard to feel, weight management may be helpful.";
+    }
+
+    setResult({
+      status,
+      idealRange: `${min}–${max} kg`,
+      guidance,
+      note:
+        "This is a general estimate only. Breed, height, muscle mass, age, and health can all affect ideal weight.",
+    });
   }
 
   return (
@@ -56,39 +81,62 @@ export default function DogWeightCalculator() {
         Check Dog Weight Status
       </h2>
 
-      <div className="mt-8">
-        <label className="mb-2 block text-sm font-medium">
-          Dog Weight (kg)
-        </label>
+      <p className="mt-3 text-slate-600">
+        Enter your dog&apos;s weight, breed size, and body shape to estimate
+        whether your dog may be underweight, healthy, or overweight.
+      </p>
 
-        <input
-          type="number"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-          placeholder="Enter dog weight"
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-        />
-      </div>
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Dog Weight (kg)
+          </label>
 
-      <div className="mt-6">
-        <label className="mb-2 block text-sm font-medium">
-          Breed Size
-        </label>
+          <input
+            type="number"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            placeholder="Enter dog weight"
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          />
+        </div>
 
-        <select
-          value={breedSize}
-          onChange={(e) => setBreedSize(e.target.value)}
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-        >
-          <option value="small">Small Breed</option>
-          <option value="medium">Medium Breed</option>
-          <option value="large">Large Breed</option>
-        </select>
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Breed Size
+          </label>
+
+          <select
+            value={breedSize}
+            onChange={(e) => setBreedSize(e.target.value)}
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          >
+            <option value="small">Small breed</option>
+            <option value="medium">Medium breed</option>
+            <option value="large">Large breed</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Body Shape
+          </label>
+
+          <select
+            value={bodyShape}
+            onChange={(e) => setBodyShape(e.target.value)}
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          >
+            <option value="thin">Thin / ribs very visible</option>
+            <option value="ideal">Ideal / visible waist</option>
+            <option value="heavy">Heavy / ribs hard to feel</option>
+          </select>
+        </div>
       </div>
 
       <button
         onClick={calculateWeightStatus}
-        className="mt-6 rounded-2xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
+        className="mt-8 rounded-2xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
       >
         Check Weight Status
       </button>
@@ -100,7 +148,33 @@ export default function DogWeightCalculator() {
           </p>
 
           <p className="mt-2 text-3xl font-bold text-blue-600">
-            {result}
+            {result.status}
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                General weight range
+              </p>
+
+              <p className="mt-1 text-xl font-bold">
+                {result.idealRange}
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                Guidance
+              </p>
+
+              <p className="mt-1 text-base font-medium leading-6">
+                {result.guidance}
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm leading-6 text-slate-500">
+            {result.note}
           </p>
         </div>
       )}

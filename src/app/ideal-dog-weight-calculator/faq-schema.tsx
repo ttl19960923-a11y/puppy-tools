@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "What is the ideal weight for my dog?",
+        name: "How do I know my dog's ideal weight?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ideal dog weight depends on breed, body frame, age, muscle mass, and health. Breed size can provide a rough starting point.",
+          text: "Ideal weight depends on breed, body frame, muscle condition, activity level, and body condition score.",
         },
       },
       {
         "@type": "Question",
-        name: "Does ideal dog weight vary by breed?",
+        name: "Is breed size enough to estimate ideal weight?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Ideal weight ranges vary greatly between small, medium, large, and giant dog breeds.",
+          text: "No. Breed size gives only a broad estimate. Individual dogs may vary significantly in structure and muscle mass.",
         },
       },
       {
         "@type": "Question",
-        name: "Should I use this calculator instead of a veterinarian?",
+        name: "Can active dogs weigh more?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. This calculator gives a rough estimate only. A veterinarian can assess your dog's ideal weight more accurately.",
+          text: "Yes. Dogs with higher muscle mass may naturally weigh more while still maintaining healthy body condition.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does age affect ideal weight?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Puppies, adults, and senior dogs may have different body composition and calorie needs.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should I ask a veterinarian about ideal weight?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. A veterinarian can evaluate body condition, muscle mass, and overall health more accurately than weight alone.",
         },
       },
     ],

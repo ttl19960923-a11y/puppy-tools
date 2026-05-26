@@ -5,26 +5,42 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much food should a puppy eat by age?",
+        name: "How much should I feed my puppy by age?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Puppy feeding amounts depend on age, breed size, weight, activity level, and food type. Younger puppies usually eat more frequent meals.",
+          text: "Feeding amount depends on age, weight, breed size, activity, and food calorie density.",
         },
       },
       {
         "@type": "Question",
-        name: "How many times a day should puppies eat?",
+        name: "How many meals should a puppy eat daily?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Young puppies often eat three to four meals per day. Older puppies may gradually transition to two meals per day.",
+          text: "Young puppies often eat three to four meals per day, while older puppies may transition toward two meals daily.",
         },
       },
       {
         "@type": "Question",
-        name: "Can I use a puppy feeding chart as an exact rule?",
+        name: "Should I follow a puppy feeding chart exactly?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. A puppy feeding chart should be used as a general guide. Always check the food label and consult a veterinarian for personalized advice.",
+          text: "No. A feeding chart is a starting point. Always check your food label and adjust based on growth and body condition.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does breed size affect puppy feeding?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Small, medium, and large breed puppies may need different feeding amounts and growth support.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is puppy food different from adult dog food?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Puppy food is usually formulated to support growth and development.",
         },
       },
     ],
