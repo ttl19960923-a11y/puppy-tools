@@ -7,12 +7,15 @@ export default function DogFeedingCalculator() {
   const [breedSize, setBreedSize] = useState("medium");
   const [activity, setActivity] = useState("normal");
   const [foodType, setFoodType] = useState("dry");
+
   const [result, setResult] = useState<{
     foodMin: number;
     foodMax: number;
     caloriesMin: number;
     caloriesMax: number;
     meals: string;
+    cupsEstimate: string;
+    feedingNote: string;
   } | null>(null);
 
   function calculateFood() {
@@ -47,12 +50,43 @@ export default function DogFeedingCalculator() {
     if (activity === "low") meals = "1–2 meals per day";
     if (activity === "high") meals = "2 meals per day";
 
+    let cupsEstimate = "Check your food label";
+
+    if (foodType === "dry") {
+      const cupMin = foodMin / 100;
+      const cupMax = foodMax / 100;
+      cupsEstimate = `${cupMin.toFixed(1)}–${cupMax.toFixed(1)} cups/day`;
+    }
+
+    if (foodType === "wet") {
+      cupsEstimate = "Wet food varies widely by brand";
+    }
+
+    if (foodType === "mixed") {
+      cupsEstimate = "Mixed feeding depends on dry/wet ratio";
+    }
+
+    let feedingNote =
+      "Monitor body condition and adjust feeding amounts gradually.";
+
+    if (activity === "high") {
+      feedingNote =
+        "Highly active dogs may need additional calories for energy and recovery.";
+    }
+
+    if (activity === "low") {
+      feedingNote =
+        "Low activity dogs may need smaller portions to avoid excess weight gain.";
+    }
+
     setResult({
       foodMin,
       foodMax,
       caloriesMin,
       caloriesMax,
       meals,
+      cupsEstimate,
+      feedingNote,
     });
   }
 
@@ -83,7 +117,9 @@ export default function DogFeedingCalculator() {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Breed Size</label>
+          <label className="mb-2 block text-sm font-medium">
+            Breed Size
+          </label>
 
           <select
             value={breedSize}
@@ -113,7 +149,9 @@ export default function DogFeedingCalculator() {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Food Type</label>
+          <label className="mb-2 block text-sm font-medium">
+            Food Type
+          </label>
 
           <select
             value={foodType}
@@ -146,15 +184,43 @@ export default function DogFeedingCalculator() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl bg-white p-4">
-              <p className="text-sm text-slate-500">Estimated calories</p>
+              <p className="text-sm text-slate-500">
+                Estimated calories
+              </p>
+
               <p className="mt-1 text-xl font-bold">
                 {result.caloriesMin}–{result.caloriesMax} kcal/day
               </p>
             </div>
 
             <div className="rounded-2xl bg-white p-4">
-              <p className="text-sm text-slate-500">Suggested meals</p>
-              <p className="mt-1 text-xl font-bold">{result.meals}</p>
+              <p className="text-sm text-slate-500">
+                Suggested meals
+              </p>
+
+              <p className="mt-1 text-xl font-bold">
+                {result.meals}
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                Cups estimate
+              </p>
+
+              <p className="mt-1 text-xl font-bold">
+                {result.cupsEstimate}
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                Feeding note
+              </p>
+
+              <p className="mt-1 text-base font-medium leading-6">
+                {result.feedingNote}
+              </p>
             </div>
           </div>
 

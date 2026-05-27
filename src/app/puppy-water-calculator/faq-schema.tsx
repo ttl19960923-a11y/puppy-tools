@@ -5,10 +5,10 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much water should a puppy drink per day?",
+        name: "How much water should a puppy drink daily?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A puppy's daily water needs depend on weight, age, food type, activity level, weather, and health. This calculator provides a general estimate.",
+          text: "Many puppies may need around 50–70 ml of water per kilogram of body weight daily, although needs vary by activity, food type, weather, and health.",
         },
       },
       {
@@ -16,7 +16,7 @@ export default function FAQSchema() {
         name: "Do puppies need more water than adult dogs?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Puppies may need frequent access to fresh water because they are growing quickly and are often active.",
+          text: "Puppies often need frequent access to fresh water because they grow rapidly and can be very active.",
         },
       },
       {
@@ -24,7 +24,23 @@ export default function FAQSchema() {
         name: "Can a puppy drink too much water?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Excessive water intake may sometimes indicate health problems. If your puppy drinks unusually large amounts of water, contact a veterinarian.",
+          text: "Yes. Excessive water intake can sometimes indicate health concerns. Contact a veterinarian if drinking habits suddenly change.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does dry food increase puppy water needs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Dry food contains less moisture than wet food, so puppies eating dry food may drink more water.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Should puppies have access to water all day?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Fresh drinking water should usually be available throughout the day, especially after meals, exercise, naps, and playtime.",
         },
       },
     ],

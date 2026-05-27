@@ -1,120 +1,188 @@
 import { Metadata } from "next";
 import DogWaterCalculator from "./calculator";
+import FAQSchema from "./faq-schema";
 
 export const metadata: Metadata = {
-  title: "Dog Water Calculator | Puppy Tools",
+  title: "Dog Water Calculator | Estimate Daily Dog Water Intake",
   description:
-    "Estimate your dog's daily water intake based on weight with our free dog water calculator.",
+    "Use this dog water calculator to estimate daily dog water intake based on weight, activity level, food type, and weather.",
 };
 
 export default function DogWaterCalculatorPage() {
   return (
-    <main className="min-h-screen bg-[#f8fafc] px-6 py-16 text-slate-900">
-      <section className="mx-auto max-w-4xl">
-        <h1 className="text-center text-5xl font-bold">
-          Dog Water Calculator
-        </h1>
+    <>
+      <FAQSchema />
 
-        <p className="mt-6 text-center text-lg text-slate-600">
-          Estimate your dog&apos;s daily water intake instantly.
-        </p>
+      <main className="min-h-screen bg-[#f8fafc] px-6 py-16 text-slate-900">
+        <section className="mx-auto max-w-4xl">
 
-        <DogWaterCalculator />
+          <h1 className="text-center text-5xl font-bold">
+            Dog Water Calculator
+          </h1>
 
-        <section className="mt-16">
-          <h2 className="text-3xl font-bold">
-            How Much Water Does a Dog Need?
-          </h2>
-
-          <p className="mt-4 leading-8 text-slate-600">
-            Most healthy dogs need around 50–70 ml of water per kilogram of
-            body weight each day. Water intake can vary depending on activity
-            level, temperature, diet, and overall health.
+          <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-600">
+            Estimate how much water your dog may need daily based on body
+            weight, activity level, food type, weather, and lifestyle.
           </p>
 
-          <p className="mt-4 leading-8 text-slate-600">
-            Dogs eating dry kibble often need more water compared to dogs fed
-            wet food diets.
-          </p>
-        </section>
+          <DogWaterCalculator />
 
-        <section className="mt-16">
-          <h2 className="text-3xl font-bold">
-            Dog Water FAQ
-          </h2>
+          <section className="mt-16 rounded-3xl border border-slate-200 bg-white p-8">
 
-          <div className="mt-8 space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold">
-                How do I know if my dog is dehydrated?
-              </h3>
+            <h2 className="text-3xl font-bold">
+              How Much Water Does A Dog Need?
+            </h2>
 
-              <p className="mt-2 leading-7 text-slate-600">
-                Signs of dehydration may include dry gums, low energy,
-                excessive panting, and loss of skin elasticity.
-              </p>
+            <p className="mt-4 leading-8 text-slate-600">
+              Most healthy dogs need approximately 50–70 ml of water per
+              kilogram of body weight daily. Water intake varies depending on
+              exercise, food type, environment, and overall health.
+            </p>
+
+            <p className="mt-4 leading-8 text-slate-600">
+              Dogs eating dry food often drink more water because dry kibble
+              contains less moisture than wet food.
+            </p>
+
+          </section>
+
+          <section className="mt-16">
+
+            <h2 className="text-3xl font-bold">
+              Dog Hydration Tips
+            </h2>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Keep fresh water available
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Dogs should usually have access to clean drinking water all day.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Activity affects water needs
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Dogs may need more water after exercise or play sessions.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Weather matters
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Hot temperatures often increase daily water requirements.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Watch for dehydration
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Dry gums, low energy, and heavy panting may sometimes suggest dehydration.
+                </p>
+              </div>
+
             </div>
 
-            <div>
-              <h3 className="text-xl font-semibold">
-                Can dogs drink too much water?
-              </h3>
+          </section>
 
-              <p className="mt-2 leading-7 text-slate-600">
-                Yes. Excessive water consumption can sometimes indicate health
-                issues and should be discussed with a veterinarian.
-              </p>
-            </div>
-          </div>
-        </section>
+          <section className="mt-16">
 
-        <section className="mt-16">
-          <h2 className="text-3xl font-bold">
-            Related Puppy Tools
-          </h2>
+            <h2 className="text-3xl font-bold">
+              Related Dog Tools
+            </h2>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <a
-              href="/dog-age-calculator"
-              className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-blue-500 hover:shadow-md"
-            >
-              <h3 className="text-lg font-semibold">
-                Dog Age Calculator
-              </h3>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
 
-              <p className="mt-2 text-sm text-slate-600">
-                Convert dog years into estimated human years.
-              </p>
-            </a>
+              <a
+                href="/dog-food-calculator"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Dog Food Calculator
+              </a>
 
-            <a
-              href="/puppy-water-calculator"
-              className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-blue-500 hover:shadow-md"
-            >
-              <h3 className="text-lg font-semibold">
+              <a
+                href="/dog-feeding-calculator"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Dog Feeding Calculator
+              </a>
+
+              <a
+                href="/dog-calorie-calculator"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Dog Calorie Calculator
+              </a>
+
+              <a
+                href="/puppy-water-calculator"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
                 Puppy Water Calculator
-              </h3>
+              </a>
 
-              <p className="mt-2 text-sm text-slate-600">
-                Estimate puppy water intake by weight.
-              </p>
-            </a>
+            </div>
 
-            <a
-              href="/puppy-feeding-calculator"
-              className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-blue-500 hover:shadow-md"
-            >
-              <h3 className="text-lg font-semibold">
-                Puppy Feeding Calculator
-              </h3>
+          </section>
 
-              <p className="mt-2 text-sm text-slate-600">
-                Estimate your puppy&apos;s daily food amount.
-              </p>
-            </a>
-          </div>
+          <section className="mt-16">
+
+            <h2 className="text-3xl font-bold">
+              Dog Water FAQ
+            </h2>
+
+            <div className="mt-8 space-y-8">
+
+              <div>
+                <h3 className="text-xl font-semibold">
+                  How much water should my dog drink?
+                </h3>
+
+                <p className="mt-2 leading-7 text-slate-600">
+                  Many dogs need around 50–70 ml per kilogram daily, depending
+                  on food type and activity.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold">
+                  Can dogs drink too much water?
+                </h3>
+
+                <p className="mt-2 leading-7 text-slate-600">
+                  Excessive water intake may sometimes indicate health issues.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold">
+                  Does dry food increase water needs?
+                </h3>
+
+                <p className="mt-2 leading-7 text-slate-600">
+                  Dogs eating dry food often drink more water.
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
         </section>
-      </section>
-    </main>
+      </main>
+    </>
   );
 }

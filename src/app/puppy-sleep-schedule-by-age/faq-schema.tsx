@@ -5,10 +5,10 @@ export default function FAQSchema() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much sleep does a puppy need by age?",
+        name: "How many hours should a puppy sleep each day?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Puppy sleep needs depend on age, breed, activity level, health, and routine. Younger puppies usually need more sleep than older puppies.",
+          text: "Young puppies may sleep 18 to 20 hours daily, while older puppies often need around 12 to 16 hours depending on age and activity level.",
         },
       },
       {
@@ -16,7 +16,7 @@ export default function FAQSchema() {
         name: "Do 8 week old puppies sleep a lot?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Many 8 week old puppies sleep much of the day because they are growing quickly and adjusting to a new routine.",
+          text: "Yes. Many 8 week old puppies sleep much of the day because they are growing quickly and adapting to new experiences.",
         },
       },
       {
@@ -24,7 +24,23 @@ export default function FAQSchema() {
         name: "Can puppies sleep through the night?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Some puppies gradually learn to sleep longer at night, but young puppies may still need potty breaks.",
+          text: "Some puppies gradually learn to sleep longer at night, but young puppies may still wake for potty breaks.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does my puppy take frequent naps?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Puppies often alternate between active play and sleep because their bodies and brains are developing rapidly.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does breed size affect puppy sleep?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Breed size and activity level may influence sleep patterns, although individual puppies can vary significantly.",
         },
       },
     ],

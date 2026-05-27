@@ -43,6 +43,22 @@ export default function FAQSchema() {
           text: "Yes. Wet food usually contains fewer calories per gram than dry food, so feeding amounts can differ significantly.",
         },
       },
+      {
+        "@type": "Question",
+        name: "Can I use a dog feeding chart by weight?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A dog feeding chart by weight can provide a starting point, but feeding needs also depend on activity level, age, food type, and metabolism.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How many cups of dog food should I feed?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The number of cups depends on food calorie density and serving size. Always compare feeding recommendations on the dog food package.",
+        },
+      },
     ],
   };
 

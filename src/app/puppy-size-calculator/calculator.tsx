@@ -5,7 +5,13 @@ import { useState } from "react";
 export default function PuppySizeCalculator() {
   const [currentWeight, setCurrentWeight] = useState("");
   const [ageMonths, setAgeMonths] = useState("");
-  const [result, setResult] = useState("");
+  const [breedSize, setBreedSize] = useState("medium");
+
+  const [result, setResult] = useState<{
+    category: string;
+    minWeight: number;
+    maxWeight: number;
+  } | null>(null);
 
   function estimateSize() {
     const weight = Number(currentWeight);
@@ -16,80 +22,157 @@ export default function PuppySizeCalculator() {
       return;
     }
 
-    const estimatedAdultWeight = (weight / age) * 12;
+    let multiplier = 2;
 
-    let size = "";
-
-    if (estimatedAdultWeight < 10) {
-      size = "Small breed size";
-    } else if (estimatedAdultWeight <= 25) {
-      size = "Medium breed size";
-    } else if (estimatedAdultWeight <= 45) {
-      size = "Large breed size";
-    } else {
-      size = "Giant breed size";
+    if (breedSize === "small") {
+      multiplier = age <= 4 ? 2 : 1.7;
     }
 
-    setResult(`${size} — estimated adult weight: ${Math.round(estimatedAdultWeight)} kg`);
+    if (breedSize === "medium") {
+      multiplier = age <= 4 ? 2.5 : 2;
+    }
+
+    if (breedSize === "large") {
+      multiplier = age <= 6 ? 3 : 2.5;
+    }
+
+    if (breedSize === "giant") {
+      multiplier = age <= 6 ? 4 : 3;
+    }
+
+    const estimatedWeight = weight * multiplier;
+
+    let category = "";
+
+    if (estimatedWeight < 10) {
+      category = "Small Adult Dog";
+    } else if (estimatedWeight <= 25) {
+      category = "Medium Adult Dog";
+    } else if (estimatedWeight <= 45) {
+      category = "Large Adult Dog";
+    } else {
+      category = "Giant Adult Dog";
+    }
+
+    setResult({
+      category,
+      minWeight: Math.round(estimatedWeight * 0.9),
+      maxWeight: Math.round(estimatedWeight * 1.1),
+    });
   }
 
   return (
     <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+
       <h2 className="text-3xl font-bold">
         Estimate Puppy Adult Size
       </h2>
 
-      <div className="mt-8">
-        <label className="mb-2 block text-sm font-medium">
-          Current Puppy Weight (kg)
-        </label>
+      <p className="mt-3 text-slate-600">
+        Enter your puppy's current weight, age, and breed size to estimate
+        future adult size.
+      </p>
 
-        <input
-          type="number"
-          value={currentWeight}
-          onChange={(e) => setCurrentWeight(e.target.value)}
-          placeholder="Enter current puppy weight"
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-        />
-      </div>
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
 
-      <div className="mt-6">
-        <label className="mb-2 block text-sm font-medium">
-          Puppy Age (months)
-        </label>
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Current Puppy Weight (kg)
+          </label>
 
-        <input
-          type="number"
-          value={ageMonths}
-          onChange={(e) => setAgeMonths(e.target.value)}
-          placeholder="Enter puppy age in months"
-          className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-        />
+          <input
+            type="number"
+            value={currentWeight}
+            onChange={(e) => setCurrentWeight(e.target.value)}
+            placeholder="Enter current puppy weight"
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Puppy Age (months)
+          </label>
+
+          <input
+            type="number"
+            value={ageMonths}
+            onChange={(e) => setAgeMonths(e.target.value)}
+            placeholder="Enter puppy age"
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <label className="mb-2 block text-sm font-medium">
+            Expected Breed Size
+          </label>
+
+          <select
+            value={breedSize}
+            onChange={(e) => setBreedSize(e.target.value)}
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
+          >
+            <option value="small">Small Breed</option>
+            <option value="medium">Medium Breed</option>
+            <option value="large">Large Breed</option>
+            <option value="giant">Giant Breed</option>
+          </select>
+        </div>
+
       </div>
 
       <button
         onClick={estimateSize}
-        className="mt-6 rounded-2xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
+        className="mt-8 rounded-2xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
       >
-        Estimate Puppy Size
+        Estimate Adult Size
       </button>
 
       {result && (
         <div className="mt-8 rounded-2xl bg-slate-100 p-6">
+
           <p className="text-lg font-semibold">
-            Estimated Puppy Size:
+            Estimated Adult Size
           </p>
 
           <p className="mt-2 text-3xl font-bold text-blue-600">
-            {result}
+            {result.category}
           </p>
 
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                Estimated adult weight
+              </p>
+
+              <p className="mt-1 text-xl font-bold">
+                {result.minWeight}–{result.maxWeight} kg
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white p-4">
+              <p className="text-sm text-slate-500">
+                Adult category
+              </p>
+
+              <p className="mt-1 text-xl font-bold">
+                {result.category}
+              </p>
+            </div>
+
+          </div>
+
           <p className="mt-4 text-sm leading-6 text-slate-500">
-            This is a rough estimate only. Breed, genetics, nutrition, and
-            growth rate can all affect adult size.
+            This estimate uses puppy age, current weight, and breed size.
+            Genetics, nutrition, and growth rate can significantly affect
+            adult size.
           </p>
+
         </div>
       )}
+
     </div>
   );
 }

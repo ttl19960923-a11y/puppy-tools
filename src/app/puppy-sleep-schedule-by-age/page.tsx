@@ -3,9 +3,9 @@ import FAQSchema from "./faq-schema";
 import PuppySleepScheduleByAgeCalculator from "./calculator";
 
 export const metadata: Metadata = {
-  title: "Puppy Sleep Schedule By Age | Puppy Tools",
+  title: "Puppy Sleep Schedule By Age | Puppy Sleep Chart & Sleep Hours",
   description:
-    "Find a simple puppy sleep schedule by age, including sleep ranges for young puppies and older puppies.",
+    "Use this puppy sleep schedule by age to understand sleep hours, nap routines, and puppy sleep patterns.",
 };
 
 export default function PuppySleepScheduleByAgePage() {
@@ -19,27 +19,84 @@ export default function PuppySleepScheduleByAgePage() {
             Puppy Sleep Schedule By Age
           </h1>
 
-          <p className="mt-6 text-center text-lg text-slate-600">
-            Find a simple puppy sleep schedule based on your puppy&apos;s age.
+          <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-600">
+            Use this puppy sleep schedule to understand common puppy sleep
+            hours, nap patterns, and sleep routines by age. Sleep needs may
+            vary depending on breed size, activity level, health, and growth
+            stage.
           </p>
 
           <PuppySleepScheduleByAgeCalculator />
 
-          <section className="mt-16">
+          <section className="mt-16 rounded-3xl border border-slate-200 bg-white p-8">
             <h2 className="text-3xl font-bold">
-              Puppy Sleep Guide By Age
+              How Puppy Sleep Changes By Age
             </h2>
 
             <p className="mt-4 leading-8 text-slate-600">
-              Puppies need plenty of sleep to support growth, learning, immune
-              health, and daily recovery. Younger puppies usually sleep more
-              than older puppies.
+              Puppies usually sleep much more than adult dogs because sleep
+              helps support growth, learning, brain development, and physical
+              recovery.
             </p>
 
             <p className="mt-4 leading-8 text-slate-600">
-              A consistent sleep routine can help puppies feel secure and may
-              make potty training and daily schedules easier.
+              Younger puppies often alternate between short periods of activity
+              and long naps. Older puppies gradually become more active and may
+              develop more stable sleep routines.
             </p>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="text-3xl font-bold">
+              Puppy Sleep Tips
+            </h2>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Young puppies sleep a lot
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Puppies around 8–10 weeks may sleep up to 18–20 hours each
+                  day.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Consistent routines help
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Consistent feeding, play, and bedtime schedules may help
+                  puppies sleep better.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Exercise affects sleep
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Puppies often sleep better after appropriate exercise and
+                  mental stimulation.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-xl font-semibold">
+                  Breed size may matter
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  Activity levels and growth speed may vary between breeds.
+                </p>
+              </div>
+
+            </div>
           </section>
 
           <section className="mt-16">
@@ -58,6 +115,7 @@ export default function PuppySleepScheduleByAgePage() {
                 </thead>
 
                 <tbody>
+
                   <tr className="border-t">
                     <td className="p-4">8–10 weeks</td>
                     <td className="p-4">18–20 hours</td>
@@ -70,7 +128,7 @@ export default function PuppySleepScheduleByAgePage() {
                     <td className="p-4">3–4 months</td>
                     <td className="p-4">16–18 hours</td>
                     <td className="p-4">
-                      More regular naps and night routine
+                      More regular naps and sleep routines
                     </td>
                   </tr>
 
@@ -78,7 +136,7 @@ export default function PuppySleepScheduleByAgePage() {
                     <td className="p-4">5–6 months</td>
                     <td className="p-4">14–16 hours</td>
                     <td className="p-4">
-                      Fewer naps and longer nighttime sleep
+                      Longer night sleep and fewer naps
                     </td>
                   </tr>
 
@@ -86,9 +144,10 @@ export default function PuppySleepScheduleByAgePage() {
                     <td className="p-4">6–12 months</td>
                     <td className="p-4">12–14 hours</td>
                     <td className="p-4">
-                      Sleep needs depend on breed and activity
+                      Sleep patterns become more stable
                     </td>
                   </tr>
+
                 </tbody>
               </table>
             </div>
@@ -96,33 +155,42 @@ export default function PuppySleepScheduleByAgePage() {
 
           <section className="mt-16">
             <h2 className="text-3xl font-bold">
-              Puppy Sleep Schedule FAQ
+              Related Puppy Tools
             </h2>
 
-            <div className="mt-8 space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold">
-                  How many hours should a puppy sleep?
-                </h3>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
 
-                <p className="mt-2 leading-7 text-slate-600">
-                  Younger puppies may sleep 18 to 20 hours per day, while older
-                  puppies may gradually need less sleep.
-                </p>
-              </div>
+              <a
+                href="/puppy-age-chart"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Puppy Age Chart
+              </a>
 
-              <div>
-                <h3 className="text-xl font-semibold">
-                  Why does my puppy sleep so much?
-                </h3>
+              <a
+                href="/puppy-feeding-schedule"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Puppy Feeding Schedule
+              </a>
 
-                <p className="mt-2 leading-7 text-slate-600">
-                  Puppies sleep a lot because they are growing, learning, and
-                  recovering from active play and training.
-                </p>
-              </div>
+              <a
+                href="/puppy-calorie-calculator"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Puppy Calorie Calculator
+              </a>
+
+              <a
+                href="/puppy-growth-chart"
+                className="rounded-2xl border border-slate-200 bg-white p-5 font-semibold hover:border-blue-500"
+              >
+                Puppy Growth Chart
+              </a>
+
             </div>
           </section>
+
         </section>
       </main>
     </>
