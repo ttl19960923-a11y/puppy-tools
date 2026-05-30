@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://puppy-tools.pages.dev/sitemap.xml",
+    sitemap: "https://puppy-tools.vercel.app/sitemap.xml",
   };
 }
