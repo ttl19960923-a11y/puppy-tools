@@ -1,186 +1,136 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+type Unit = "lb" | "kg";
+type FoodUnit = "cup" | "100g";
 
 export default function PuppyFeedingCalculator() {
   const [weight, setWeight] = useState("");
-  const [age, setAge] = useState("2-4");
-  const [breedSize, setBreedSize] = useState("medium");
-  const [activity, setActivity] = useState("normal");
-  const [foodType, setFoodType] = useState("dry");
-  const [result, setResult] = useState<{
-    foodMin: number;
-    foodMax: number;
-    caloriesMin: number;
-    caloriesMax: number;
-    meals: string;
-  } | null>(null);
+  const [unit, setUnit] = useState<Unit>("lb");
+  const [ageMonths, setAgeMonths] = useState("3");
+  const [foodCalories, setFoodCalories] = useState("400");
+  const [foodUnit, setFoodUnit] = useState<FoodUnit>("cup");
+  const [submitted, setSubmitted] = useState(false);
 
-  function calculateFood() {
-    const puppyWeight = Number(weight);
+  const result = useMemo(() => {
+    const enteredWeight = Number(weight);
+    const months = Number(ageMonths);
+    const kcalDensity = Number(foodCalories);
+    if (!submitted || enteredWeight <= 0 || months <= 0 || kcalDensity <= 0) return null;
 
-    if (!puppyWeight || puppyWeight <= 0) {
-      alert("Please enter a valid puppy weight.");
-      return;
+    const kg = unit === "lb" ? enteredWeight / 2.2046226218 : enteredWeight;
+    const rer = 70 * Math.pow(kg, 0.75);
+    const growthFactor = months < 4 ? 3 : 2;
+    const calories = rer * growthFactor;
+    const lowCalories = calories * 0.9;
+    const highCalories = calories * 1.1;
+
+    let amountLow: number;
+    let amountHigh: number;
+    let amountUnit: string;
+
+    if (foodUnit === "cup") {
+      amountLow = lowCalories / kcalDensity;
+      amountHigh = highCalories / kcalDensity;
+      amountUnit = "cups";
+    } else {
+      amountLow = (lowCalories / kcalDensity) * 100;
+      amountHigh = (highCalories / kcalDensity) * 100;
+      amountUnit = "g";
     }
 
-    let baseCalories = 70 * Math.pow(puppyWeight, 0.75);
+    const meals = months < 6 ? 3 : 2;
 
-    if (age === "2-4") baseCalories *= 3;
-    if (age === "4-8") baseCalories *= 2.2;
-    if (age === "8-12") baseCalories *= 1.6;
-
-    if (breedSize === "small") baseCalories *= 0.9;
-    if (breedSize === "large") baseCalories *= 1.15;
-
-    if (activity === "low") baseCalories *= 0.9;
-    if (activity === "high") baseCalories *= 1.15;
-
-    let caloriesPerGram = 3.5;
-
-    if (foodType === "wet") caloriesPerGram = 1.2;
-    if (foodType === "mixed") caloriesPerGram = 2.4;
-
-    const caloriesMin = Math.round(baseCalories * 0.9);
-    const caloriesMax = Math.round(baseCalories * 1.1);
-
-    const foodMin = Math.round(caloriesMin / caloriesPerGram);
-    const foodMax = Math.round(caloriesMax / caloriesPerGram);
-
-    let meals = "2 meals per day";
-
-    if (age === "2-4") meals = "3–4 meals per day";
-    if (age === "4-8") meals = "3 meals per day";
-    if (age === "8-12") meals = "2 meals per day";
-
-    setResult({
-      foodMin,
-      foodMax,
-      caloriesMin,
-      caloriesMax,
+    return {
+      kg,
+      rer,
+      growthFactor,
+      calories,
+      lowCalories,
+      highCalories,
+      amountLow,
+      amountHigh,
+      amountUnit,
       meals,
-    });
+      perMealLow: amountLow / meals,
+      perMealHigh: amountHigh / meals,
+    };
+  }, [weight, unit, ageMonths, foodCalories, foodUnit, submitted]);
+
+  function calculateFood() {
+    if (Number(weight) <= 0 || Number(ageMonths) <= 0 || Number(foodCalories) <= 0) {
+      setSubmitted(false);
+      return;
+    }
+    setSubmitted(true);
   }
 
-  return (
-    <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-      <h2 className="text-3xl font-bold">Calculate Puppy Feeding Amount</h2>
+  const amountDigits = foodUnit === "cup" ? 2 : 0;
 
-      <p className="mt-3 text-slate-600">
-        Enter your puppy&apos;s weight, age, breed size, activity level, and food
-        type to estimate daily food amount.
-      </p>
+  return (
+    <section id="calculator" className="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+      <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 className="text-3xl font-bold">Calculate Your Puppy&apos;s Daily Food</h2>
+        </div>
+        <p className="max-w-md text-sm leading-6 text-slate-500">Uses a veterinary energy-estimation formula, then converts calories into your food&apos;s actual serving amount.</p>
+      </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         <div>
-          <label className="mb-2 block text-sm font-medium">
-            Puppy Weight (kg)
-          </label>
-
-          <input
-            type="number"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            placeholder="Enter puppy weight"
-            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-          />
+          <label htmlFor="puppy-weight" className="mb-2 block text-sm font-semibold">Current puppy weight</label>
+          <div className="flex gap-2">
+            <input id="puppy-weight" type="number" min="0.1" step="0.1" value={weight} onChange={(e) => { setWeight(e.target.value); setSubmitted(false); }} placeholder={unit === "lb" ? "e.g. 15" : "e.g. 6.8"} className="min-w-0 flex-1 rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500" />
+            <select aria-label="Weight unit" value={unit} onChange={(e) => { setUnit(e.target.value as Unit); setSubmitted(false); }} className="rounded-2xl border border-slate-300 px-3 py-3 outline-none focus:border-blue-500">
+              <option value="lb">lb</option><option value="kg">kg</option>
+            </select>
+          </div>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Puppy Age</label>
-
-          <select
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-          >
-            <option value="2-4">2–4 months</option>
-            <option value="4-8">4–8 months</option>
-            <option value="8-12">8–12 months</option>
-          </select>
+          <label htmlFor="puppy-age" className="mb-2 block text-sm font-semibold">Age in months</label>
+          <input id="puppy-age" type="number" min="2" max="24" step="0.5" value={ageMonths} onChange={(e) => { setAgeMonths(e.target.value); setSubmitted(false); }} className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500" />
+          <p className="mt-2 text-xs text-slate-500">Designed for weaned, growing puppies. Very young or medically complex puppies need veterinary guidance.</p>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Breed Size</label>
-
-          <select
-            value={breedSize}
-            onChange={(e) => setBreedSize(e.target.value)}
-            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-          >
-            <option value="small">Small breed</option>
-            <option value="medium">Medium breed</option>
-            <option value="large">Large breed</option>
-          </select>
+          <label htmlFor="food-calories" className="mb-2 block text-sm font-semibold">Calories in your puppy food</label>
+          <input id="food-calories" type="number" min="1" step="1" value={foodCalories} onChange={(e) => { setFoodCalories(e.target.value); setSubmitted(false); }} className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500" />
+          <p className="mt-2 text-xs text-slate-500">Look for “Calorie Content” or metabolizable energy (ME) on the package.</p>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">
-            Activity Level
-          </label>
-
-          <select
-            value={activity}
-            onChange={(e) => setActivity(e.target.value)}
-            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-          >
-            <option value="low">Low activity</option>
-            <option value="normal">Normal activity</option>
-            <option value="high">High activity</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-medium">Food Type</label>
-
-          <select
-            value={foodType}
-            onChange={(e) => setFoodType(e.target.value)}
-            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500"
-          >
-            <option value="dry">Dry puppy food</option>
-            <option value="wet">Wet puppy food</option>
-            <option value="mixed">Mixed food</option>
+          <label htmlFor="food-unit" className="mb-2 block text-sm font-semibold">Food label unit</label>
+          <select id="food-unit" value={foodUnit} onChange={(e) => { setFoodUnit(e.target.value as FoodUnit); setSubmitted(false); }} className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500">
+            <option value="cup">kcal per cup</option>
+            <option value="100g">kcal per 100 g</option>
           </select>
         </div>
       </div>
 
-      <button
-        onClick={calculateFood}
-        className="mt-8 rounded-2xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
-      >
-        Calculate Feeding Amount
-      </button>
+      <button onClick={calculateFood} className="mt-8 w-full rounded-2xl bg-blue-600 px-6 py-3.5 font-semibold text-white transition hover:bg-blue-700 md:w-auto">Calculate Feeding Amount</button>
+
+      {submitted && !result && <p className="mt-4 rounded-xl bg-amber-50 p-4 text-sm text-amber-900">Please enter a valid weight, age, and calorie density.</p>}
 
       {result && (
-        <div className="mt-8 rounded-2xl bg-slate-100 p-6">
-          <p className="text-lg font-semibold">Estimated Daily Feeding:</p>
+        <div className="mt-8 rounded-3xl border border-blue-200 bg-blue-50/70 p-6 md:p-8" aria-live="polite">
+          <p className="text-sm font-semibold text-blue-700">Estimated starting amount</p>
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <p className="text-4xl font-bold tracking-tight text-slate-950">{result.amountLow.toFixed(amountDigits)}–{result.amountHigh.toFixed(amountDigits)} {result.amountUnit}</p>
+            <span className="text-lg font-medium text-slate-500">per day</span>
+          </div>
+          <p className="mt-3 text-slate-600">About {Math.round(result.lowCalories)}–{Math.round(result.highCalories)} kcal/day, split into approximately {result.meals} meals.</p>
 
-          <p className="mt-2 text-3xl font-bold text-blue-600">
-            {result.foodMin}–{result.foodMax} g per day
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl bg-white p-4">
-              <p className="text-sm text-slate-500">Estimated calories</p>
-              <p className="mt-1 text-xl font-bold">
-                {result.caloriesMin}–{result.caloriesMax} kcal/day
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white p-4">
-              <p className="text-sm text-slate-500">Suggested meals</p>
-              <p className="mt-1 text-xl font-bold">{result.meals}</p>
-            </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-blue-100 bg-white p-4"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">RER</p><p className="mt-1 text-xl font-bold text-slate-900">{Math.round(result.rer)} kcal</p></div>
+            <div className="rounded-2xl border border-blue-100 bg-white p-4"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Growth factor</p><p className="mt-1 text-xl font-bold text-slate-900">{result.growthFactor} × RER</p></div>
+            <div className="rounded-2xl border border-blue-100 bg-white p-4"><p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Per meal</p><p className="mt-1 text-xl font-bold text-slate-900">{result.perMealLow.toFixed(amountDigits)}–{result.perMealHigh.toFixed(amountDigits)} {foodUnit === "cup" ? "cups" : "g"}</p></div>
           </div>
 
-          <p className="mt-4 text-sm leading-6 text-slate-500">
-            This is a general estimate. Always compare the result with your
-            puppy food label and adjust based on body condition and veterinarian
-            advice.
-          </p>
+          <p className="mt-6 text-sm leading-6 text-slate-600">This is a starting estimate, not a prescription. Energy needs vary between puppies. Monitor weight and body condition, include treats in total calories, and ask your veterinarian to adjust the plan for your individual puppy.</p>
         </div>
       )}
-    </div>
+    </section>
   );
 }
