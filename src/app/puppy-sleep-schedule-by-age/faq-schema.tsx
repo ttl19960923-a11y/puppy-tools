@@ -1,57 +1,11 @@
-export default function FAQSchema() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "How many hours should a puppy sleep each day?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Young puppies may sleep 18 to 20 hours daily, while older puppies often need around 12 to 16 hours depending on age and activity level.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do 8 week old puppies sleep a lot?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Many 8 week old puppies sleep much of the day because they are growing quickly and adapting to new experiences.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can puppies sleep through the night?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Some puppies gradually learn to sleep longer at night, but young puppies may still wake for potty breaks.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Why does my puppy take frequent naps?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Puppies often alternate between active play and sleep because their bodies and brains are developing rapidly.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does breed size affect puppy sleep?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Breed size and activity level may influence sleep patterns, although individual puppies can vary significantly.",
-        },
-      },
-    ],
-  };
+const faqs = [
+  { q: "How much do puppies sleep?", a: "Young puppies commonly sleep about 18 to 20 hours in a 24-hour day. Individual sleep varies with age, health, activity, environment, and the puppy." },
+  { q: "How much should an 8-week-old puppy sleep?", a: "An 8-week-old puppy may spend most of the day asleep. Frequent naps between short periods of eating, potty trips, play, training, and exploration are normal." },
+  { q: "How long should puppy naps be?", a: "Puppy naps can vary. The American Kennel Club notes that puppies may nap every hour or so and may sleep from about 30 minutes to as long as two hours at a time." },
+  { q: "Should puppies sleep through the night?", a: "Very young puppies may not be ready to sleep through the entire night and may need a nighttime potty break. Nighttime sleep usually becomes more consolidated as puppies mature." },
+  { q: "When should I ask a veterinarian about my puppy's sleep?", a: "Talk with a veterinarian if your puppy has a meaningful change in sleep together with signs such as unusual lethargy while awake, nighttime restlessness, appetite or potty changes, loss of interest in play, or concerning snoring or gasping." },
+];
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(schema),
-      }}
-    />
-  );
+export default function FAQSchema() {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }) }} />;
 }
