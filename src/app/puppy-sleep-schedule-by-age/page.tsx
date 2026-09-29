@@ -111,7 +111,10 @@ export default function PuppySleepScheduleByAgePage() {
             <p className="mt-6 border-t border-slate-200 pt-5 text-sm text-slate-500"><strong className="text-slate-700">Last reviewed:</strong> September 2026 · Educational use only; not veterinary diagnosis or individualized medical advice.</p>
           </section>
 
-          <section className="mt-16"><h2 className="text-3xl font-bold">Related Puppy Tools</h2><div className="mt-6 grid gap-4 md:grid-cols-2">
+          
+          <section className="mt-16"><p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Learn more</p><h2 className="mt-2 text-3xl font-bold">Related Puppy Sleep Guide</h2><div className="mt-6 grid gap-4 md:grid-cols-2"><Link href="/how-much-sleep-do-puppies-need" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">How Much Sleep Do Puppies Need?</span><p className="mt-1 text-sm text-slate-500">Learn how puppy sleep changes with age, naps, activity, and nighttime routines.</p></Link></div></section>
+
+<section className="mt-16"><h2 className="text-3xl font-bold">Related Puppy Tools</h2><div className="mt-6 grid gap-4 md:grid-cols-2">
             <Link href="/puppy-feeding-schedule" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">Puppy Feeding Schedule</span><p className="mt-1 text-sm text-slate-500">Plan puppy meals through the day.</p></Link>
             <Link href="/puppy-age-chart" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">Puppy Age Chart</span><p className="mt-1 text-sm text-slate-500">Understand puppy age and development stages.</p></Link>
             <Link href="/puppy-feeding-calculator" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">Puppy Feeding Calculator</span><p className="mt-1 text-sm text-slate-500">Estimate daily food from weight, age, and food calories.</p></Link>

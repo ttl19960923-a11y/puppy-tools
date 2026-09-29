@@ -132,7 +132,19 @@ export default function PuppyFeedingCalculatorPage() {
             <p className="mt-6 border-t border-slate-200 pt-5 text-sm text-slate-500"><strong className="text-slate-700">Last reviewed:</strong> September 2026 · Educational use only; not veterinary diagnosis or individualized medical advice.</p>
           </section>
 
+          
           <section className="mt-16">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Learn more</p>
+            <h2 className="mt-2 text-3xl font-bold">Related Puppy Feeding Guides</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <Link href="/how-much-should-a-puppy-eat" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">How Much Should a Puppy Eat?</span><p className="mt-1 text-sm text-slate-500">Learn how calories, food density, age, and body condition work together.</p></Link>
+              <Link href="/puppy-feeding-guide-by-age" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">Puppy Feeding Guide by Age</span><p className="mt-1 text-sm text-slate-500">See how feeding priorities change from early puppyhood toward maturity.</p></Link>
+              <Link href="/how-often-should-a-puppy-eat" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">How Often Should a Puppy Eat?</span><p className="mt-1 text-sm text-slate-500">Plan meal frequency and a practical daily feeding rhythm.</p></Link>
+              <Link href="/when-to-switch-from-puppy-to-adult-food" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">When to Switch to Adult Dog Food</span><p className="mt-1 text-sm text-slate-500">Understand why transition timing varies with growth and breed size.</p></Link>
+            </div>
+          </section>
+
+<section className="mt-16">
             <h2 className="text-3xl font-bold">Related Puppy Calculators</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <Link href="/puppy-calorie-calculator" className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-500"><span className="font-semibold">Puppy Calorie Calculator</span><p className="mt-1 text-sm text-slate-500">Estimate daily puppy calorie needs.</p></Link>
