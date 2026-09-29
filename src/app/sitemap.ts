@@ -25,6 +25,7 @@ const routes = [
   "/puppy-feeding-chart",
   "/puppy-feeding-schedule",
   "/puppy-sleep-schedule-by-age",
+  "/puppy-exercise-calculator",
 
   "/dog-pregnancy-calculator",
   "/dog-due-date-calculator",

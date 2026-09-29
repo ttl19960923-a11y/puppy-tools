@@ -266,6 +266,12 @@ const toolSections = [
         description: "Find a simple puppy sleep schedule by age.",
         icon: "😴",
       },
+      {
+        href: "/puppy-exercise-calculator",
+        title: "Puppy Exercise Calculator",
+        description: "Build an age- and size-aware puppy activity plan.",
+        icon: "🐾",
+      },
     ],
   },
   {
